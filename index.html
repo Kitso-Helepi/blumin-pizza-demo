@@ -137,6 +137,7 @@ ul{list-style:none;padding:0}
 }
 #hero{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s var(--ease);
       will-change:transform;transform:translateZ(0)}
+#hero{pointer-events:none}
 .stage.video-ready #hero{opacity:1}
 .stage.video-ready .poster{opacity:0}
 .stage.video-failed #hero{display:none}
@@ -426,7 +427,7 @@ footer{padding:44px var(--gut) 54px;border-top:1px solid var(--hair);
     <div class="layer poster" id="poster" aria-hidden="true">
       <img src="assets/hero-poster.jpg" alt="" fetchpriority="high" decoding="async">
     </div>
-    <video class="layer" id="hero" preload="none" autoplay loop muted playsinline aria-hidden="true" tabindex="-1"></video>
+    <video class="layer" id="hero" preload="none" autoplay loop muted playsinline inert aria-hidden="true" tabindex="-1"></video>
     <div class="layer scrim" aria-hidden="true"></div>
 
     <svg class="ring" id="ring" viewBox="0 0 48 48" aria-hidden="true">
@@ -821,7 +822,7 @@ function loadHeroBlob(){
   if(location.protocol === 'file:'){
     clearTimeout(watchdog);
     video.addEventListener('canplay', function(){
-      if(ring && ring.parentNode) ring.parentNode.removeChild(ring);
+      if(ring) ring.remove();
       stage.classList.add('video-ready'); playHeroVideo();
     }, {once:true});
     video.src = VIDEO_URL; video.load();
@@ -856,7 +857,7 @@ function attach(blob){
   video.src = URL.createObjectURL(blob);
   video.load();
   video.addEventListener('canplay', function(){
-    if(ring && ring.parentNode) ring.parentNode.removeChild(ring);
+    if(ring) ring.remove();
     stage.classList.add('video-ready');
     playHeroVideo();
   }, {once:true});
