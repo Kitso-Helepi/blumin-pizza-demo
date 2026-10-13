@@ -234,7 +234,7 @@ h2.t{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.4vw,58px)
 .draw.in line,.in .draw line{stroke-dashoffset:0}
 
 /* ---------- 01 menu ---------- */
-.menu{display:grid;gap:0}
+.menu{display:grid;gap:0;list-style:none;margin:0;padding:0}
 .item{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(14px,2.4vw,30px);align-items:baseline;
       padding:clamp(19px,2.5vh,27px) 0;border-top:1px solid var(--hair);position:relative}
 .item:last-child{border-bottom:1px solid var(--hair)}
@@ -375,6 +375,23 @@ footer{padding:44px var(--gut) 54px;border-top:1px solid var(--hair);
   #hero{position:absolute;top:0;left:0;width:100%;height:62svh;min-height:330px;max-height:560px}
 }
 @media (prefers-reduced-motion:reduce){#hero{display:none}.stage.video-ready .poster{opacity:1}}
+/* Compact mobile rhythm from the video through the menu. */
+@media (max-width:720px){
+  .band.settle{padding-top:24px;padding-bottom:8px}
+  .band:not(.settle){padding-top:28px}
+  .band:last-child{padding-bottom:8px}
+  .band .kicker{margin-bottom:10px}
+  .band .sub{margin-top:12px;max-width:34ch}
+  .band .row{margin-top:20px;gap:12px}
+  #menu{padding-top:40px;padding-bottom:48px}
+  #menu .head{gap:16px;margin-bottom:24px}
+  #menu .item{grid-template-columns:1fr auto;gap:8px 12px;padding:20px 0}
+  #menu .i-n{display:none}
+  #menu .i-t{min-width:0;font-size:23px;line-height:1.25}
+  #menu .i-d{margin-top:8px;font-size:15px;line-height:1.6}
+  #menu .i-p{align-self:start;padding-top:3px}
+  #menu .menu-foot{margin-top:24px;gap:12px}
+}
 /* ---------- reduced motion, honoured completely ---------- */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
@@ -475,8 +492,7 @@ footer{padding:44px var(--gut) 54px;border-top:1px solid var(--hair);
   <section id="menu" class="reveal">
     <div class="head up">
       <div>
-        <span class="num">01 / The menu</span>
-        <h2 class="t" style="margin-top:14px">Find your favourite.</h2>
+        <h2 class="t" style="margin-top:0">Find your favourite.</h2>
       </div>
       <p class="lede">Ten pizzas from our Uber Eats menu. Prices shown are Uber Eats prices and may change or differ when ordering in person or on Mr D.</p>
     </div>
